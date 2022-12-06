@@ -22,7 +22,7 @@ concatenate nested groups with "/", the empty string as default selects all entr
 ## Example usage
 
 ```yaml
-uses: efficientIO/keepass-to-env-vars@v1.0.2
+uses: efficientIO/keepass-to-env-vars@v1
 with:
   keepass-file-path: 'database.kdbx'
   keepass-master-password: 'secret'
