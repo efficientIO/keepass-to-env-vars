@@ -2,6 +2,7 @@ import base64
 import binascii
 import logging
 import os
+import shlex
 import subprocess
 
 import pykeepass
@@ -68,7 +69,7 @@ def contains_equal_sign(value: str) -> bool:
 def set_environment_value(name: str, value: str) -> None:
     logging.debug(f'setting "{name}" to "{value}" in the environment')
     subprocess.run([f'echo "{name}<<EOF" >> {get_environment_file_path()}'], shell=True, check=True)
-    subprocess.run([f'echo "{value}" >> {get_environment_file_path()}'], shell=True, check=True)
+    subprocess.run([f'echo {shlex.quote(value)} >> {get_environment_file_path()}'], shell=True, check=True)
     subprocess.run([f'echo "EOF" >> {get_environment_file_path()}'], shell=True, check=True)
 
 
