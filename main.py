@@ -67,7 +67,8 @@ def contains_equal_sign(value: str) -> bool:
 
 
 def set_environment_value(name: str, value: str) -> None:
-    logging.debug(f'setting "{name}" to "{value}" in the environment')
+    logging.info(f'setting "{name}" to "{value}" in the environment')
+    logging.info(f'the quoted value is "{shlex.quote(value)}"')
     subprocess.run([f'echo "{name}<<EOF" >> {get_environment_file_path()}'], shell=True, check=True)
     subprocess.run([f'echo {shlex.quote(value)} >> {get_environment_file_path()}'], shell=True, check=True)
     subprocess.run([f'echo "EOF" >> {get_environment_file_path()}'], shell=True, check=True)
