@@ -1,5 +1,6 @@
 import base64
 import binascii
+import json
 import logging
 import os
 import shlex
@@ -79,11 +80,17 @@ def set_mappings_in_env_vars(env_var_mappings: dict[str, str]) -> None:
         set_environment_value(name, value)
 
 
+def save_mappings_to_file(env_var_mappings: dict[str, str]) -> None:
+    with open('env.json', 'w') as file:
+        json.dump(env_var_mappings, file, ensure_ascii=False, allow_nan=False, sort_keys=True)
+
+
 def main() -> None:
     args = ScriptArgumentParser().parse_args()
     env_var_mappings = get_env_var_mappings(
         args.keepass_file_path, args.keepass_master_password, args.keepass_group_filter)
     set_mappings_in_env_vars(env_var_mappings)
+    save_mappings_to_file(env_var_mappings)
 
 
 if __name__ == '__main__':

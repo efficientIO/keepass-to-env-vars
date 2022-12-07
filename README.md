@@ -2,7 +2,8 @@
 
 This action puts keepass entries into environment variables, 
 entries whose title ends with the "_BASE64" postfix are exported once with their original name and value and once as
-decoded string without the postfix if the decoded string only contains valid UTF-8 bytes
+decoded string without the postfix if the decoded string only contains valid UTF-8 bytes, it also creates an env.json
+file in the current working directory which contains all environment variables
 
 ## Inputs
 
