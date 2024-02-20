@@ -73,7 +73,6 @@ def set_environment_value(name: str, value: str) -> None:
     subprocess.run([f'echo {shlex.quote(value)} >> {get_environment_file_path()}'], shell=True, check=True)
     subprocess.run([f'echo "EOF" >> {get_environment_file_path()}'], shell=True, check=True)
     subprocess.run([f'echo "::add-mask::{shlex.quote(value)}"'], shell=True, check=True)
-    subprocess.run([f'echo "::add-mask::{value}"'], shell=True, check=True)
 
 
 def set_mappings_in_env_vars(env_var_mappings: dict[str, str]) -> None:
